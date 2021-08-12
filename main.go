@@ -6,7 +6,6 @@ import (
 	"log"
 	"os"
 
-	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/credentials"
 	"github.com/aws/aws-sdk-go-v2/service/medialive"
@@ -31,13 +30,18 @@ func main() {
 	*/
 
 	// stop channel
-	out, err := svc.StopChannel(context.TODO(), &medialive.StopChannelInput{
+	/*out, err := svc.StopChannel(context.TODO(), &medialive.StopChannelInput{
 		ChannelId: aws.String("5867858"),
 	})
 	if err != nil {
 		log.Fatalln("unable to load channel stop: ", err)
 	}
+	fmt.Println(out) */
 
+	// list channel
+	out, err := svc.ListChannels(context.TODO(), &medialive.ListChannelsInput{
+		MaxResults: 23,
+	})
 	fmt.Println(out)
 
 }
